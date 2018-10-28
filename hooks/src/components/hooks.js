@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import Form from './forms';
 
 const Hooks = () => {
-  const [name, setName] = useState('Carlo');
+  const [todos, setTodos] = useState([]);
+  const [name, setName] = useState('carlo');
 
-  const inputChange = event => {
-    setName(event.target.value);
-  };
   return (
     <div>
-      <h1>{name}</h1>
-      <input type="text" onChange={e => inputChange(e)} />
+      <h1>Welcome to Todos by {name}</h1>
+      <input onChange={e => setName(e.target.value)} />
+      <Form onSubmit />
+      {todos.map((item, index) => {
+        return <div key={index}>{item}</div>;
+      })}
     </div>
   );
 };
