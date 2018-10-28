@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const inputValue = initialState => {
   const [value, setValue] = useState(initialState);
@@ -21,6 +21,13 @@ export default props => {
     console.log(e.target.name);
     setField({ ...inputField, [e.target.name]: e.target.value });
   };
+
+  useEffect(async () => {
+    const data = await fetch(`http://localhost:3333/smurfs`);
+    const response = await data.json();
+    setSmurfs(response);
+  }, []);
+  console.log(smurfs);
   return (
     <div>
       <h1>Add Todos?</h1>
@@ -44,6 +51,9 @@ export default props => {
           value={inputField.email}
         />
       </form>
+      {smurfs.map(item => {
+        return <h1>item.name</h1>;
+      })}
     </div>
   );
 };
