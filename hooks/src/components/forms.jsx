@@ -9,16 +9,40 @@ const inputValue = initialState => {
 };
 
 export default props => {
-  const name = inputValue('');
-  const email = inputValue('');
-  const age = inputValue('');
+  const [inputField, setField] = useState({
+    name: '',
+    email: '',
+    age: null
+  });
+
+  const [smurfs, setSmurfs] = useState([]);
+
+  const handleChange = e => {
+    console.log(e.target.name);
+    setField({ ...inputField, [e.target.name]: e.target.value });
+  };
   return (
     <div>
       <h1>Add Todos?</h1>
       <form onSubmit={() => props.addTodo}>
-        <input {...name} />
-        <input {...email} />
-        <input {...age} />
+        <input
+          type="text"
+          name="name"
+          onChange={e => handleChange(e)}
+          value={inputField.name}
+        />
+        <input
+          type="text"
+          name="age"
+          onChange={e => handleChange(e)}
+          value={inputField.age}
+        />
+        <input
+          type="text"
+          name="email"
+          onChange={e => handleChange(e)}
+          value={inputField.email}
+        />
       </form>
     </div>
   );
