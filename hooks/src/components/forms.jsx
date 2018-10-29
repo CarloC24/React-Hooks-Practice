@@ -6,7 +6,7 @@ const inputValue = initialState => {
     value: value,
     onChange: e => setValue(e.target.value)
   };
-};
+}; // custom hook
 
 export default props => {
   const [inputField, setField] = useState({
@@ -27,11 +27,10 @@ export default props => {
     const response = await data.json();
     setSmurfs(response);
   }, []);
-  console.log(smurfs);
   return (
     <div>
-      <h1>Add Todos?</h1>
-      <form onSubmit={() => props.addTodo}>
+      <h1>Router with redux</h1>
+      {/* <form onSubmit={() => props.addTodo}>
         <input
           type="text"
           name="name"
@@ -52,8 +51,12 @@ export default props => {
         />
       </form>
       {smurfs.map(item => {
-        return <h1>item.name</h1>;
-      })}
+        return (
+          <div>
+            <h1>{item.name}</h1>
+          </div>
+        );
+      })} */}
     </div>
   );
 };

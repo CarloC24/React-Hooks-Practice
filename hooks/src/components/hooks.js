@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import Form from './forms';
+import { Route } from 'react-router';
+import Practice from '../components/pc';
 
 const Hooks = () => {
-  const [todos, setTodos] = useState([]);
   const [name, setName] = useState('carlo');
 
   return (
     <div>
-      <h1>Welcome to Todos by {name}</h1>
-      <input onChange={e => setName(e.target.value)} />
-      <Form onSubmit />
-      {todos.map((item, index) => {
-        return <div key={index}>{item}</div>;
-      })}
+      <h1>Router with {name}</h1>
+      <Route path="/" render={props => <Form {...props} />} />
+      <Route path="/" render={props => <Practice {...props} />} />
     </div>
   );
 };
